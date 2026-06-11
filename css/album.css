@@ -1,0 +1,227 @@
+/* ========================================================
+   css/album.css — FIX TOTAL: STRUKTUR SCRAPBOOK INDAH & AMAN
+   ======================================================== */
+
+/* 1. Pengaturan Tirai Album (Awalnya Sembunyi Total Biar Video Utama Muncul) */
+/* 1. Pengaturan Tirai Album (Sembunyi Total saat Pertama Load) */
+/* 1. Pengaturan Tirai Album (Awalnya Sembunyi & Tembus Pandang Biar Video Muncul) */
+#album-overlay {
+    display: none; 
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    background: rgba(5, 2, 15, 0.98);
+    backdrop-filter: blur(16px);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    overflow-y: auto; /* Ini yang bikin bisa di-scroll */
+    padding: 60px 20px 80px;
+    box-sizing: border-box; /* Biar padding tidak ngerusak layout */
+}
+
+#album-overlay.active {
+    display: block !important;
+    opacity: 1;
+}
+
+/* Ketika tombol diklik, baru tirai hitam ini muncul dan aktif */
+#album-overlay.active {
+    opacity: 1;
+    pointer-events: auto; /* Aktifkan klik kembali saat terbuka */
+}
+
+/* Tombol Tutup Album Bulat (✕) */
+.close-album {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 10000;
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: rgba(45,27,78,0.9);
+    border: 1.5px solid rgba(232,160,180,0.4);
+    color: #e8a0b4;
+    font-size: 1.4rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.close-album:hover {
+    transform: scale(1.1) rotate(90deg);
+    background: rgba(192,96,122,0.4);
+}
+
+/* Bagian Judul Album Terindah */
+.album-header {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.album-title {
+    font-family: 'Dancing Script', cursive;
+    font-size: clamp(2.5rem, 8vw, 4rem);
+    color: #e8a0b4;
+    text-shadow: 0 0 30px rgba(232,160,180,0.6);
+    margin-bottom: 10px;
+}
+
+.album-subtitle {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    color: rgba(255,255,255,0.5);
+    font-size: 1rem;
+}
+
+/* 2. Sistem Grid Album (Mengunci Ukuran Foto Biar Gak Raksasa) */
+.album-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 40px;
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+/* Item Dasar Foto Berdiri */
+.album-item {
+    display: flex;
+    align-items: center;
+    position: relative;
+    height: 420px;
+    cursor: pointer;
+    transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    background: transparent;
+}
+
+/* KETIKA FOTO DIKLIK (AKTIF): Melebar mengambil jatah 2 kolom grid */
+.album-item.is-active {
+    grid-column: span 2;
+    width: 100%;
+}
+
+/* Bingkai Foto Polaroid Scrapbook */
+.album-frame {
+    width: 300px; /* Ukuran pas kotak polaroid normal, tidak akan raksasa lagi */
+    height: 100%;
+    background: #ffffff;
+    padding: 15px 15px 55px 15px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.6);
+    z-index: 10;
+    transition: all 0.5s ease;
+    flex-shrink: 0; /* Mencegah foto menjadi gepeng saat teks cerita muncul */
+    border-radius: 4px;
+    position: relative;
+}
+
+.album-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 2px;
+}
+
+/* Kembalikan gaya miring acak estetik kliping scrapbook */
+.frame-vintage { border: 8px double #c3a37a; background: #fdfaf4; transform: rotate(-1.5deg); }
+.frame-elegant { border: 5px solid #eaeaea; background: #ffffff; transform: rotate(2deg); }
+.frame-classic { border: 10px solid #2c1d11; background: #fafafa; transform: rotate(-0.5deg); }
+
+.album-item.is-active .album-frame {
+    transform: rotate(0deg) scale(1.02); /* Meluruskan bingkai foto saat dibuka */
+}
+
+.sticker {
+    position: absolute;
+    bottom: 12px;
+    right: 20px;
+    font-size: 1.5rem;
+    z-index: 12;
+}
+
+/* 3. Kartu Cerita Teks Mengetik (Disamping Foto, Gak Nindih Muka) */
+.album-story-card {
+    display: none; /* Sembunyikan total di awal agar tidak berantakan */
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    pointer-events: none;
+    padding: 30px;
+    align-items: center;
+    transition: all 0.5s ease;
+    position: relative;
+}
+
+/* Aktifkan kartu cerita hanya saat foto diklik aktif */
+.album-item.is-active .album-story-card {
+    display: flex;
+    opacity: 1;
+    pointer-events: auto;
+    background-color: rgba(20, 12, 35, 0.9); /* Kotak hitam transparan manis untuk teks */
+    border-radius: 0 15px 15px 0;
+    overflow-y: auto;
+}
+
+.album-story-content {
+    position: relative;
+    z-index: 5;
+    width: 100%;
+}
+
+.album-typing {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem;
+    line-height: 1.8;
+    color: #ffffff;
+    font-style: italic;
+    word-wrap: break-word;
+}
+
+.album-typing::after {
+    content: '✍️';
+    animation: ngetikPena 0.8s infinite;
+    margin-left: 6px;
+}
+
+@keyframes ngetikPena {
+    50% { opacity: 0; }
+}
+
+/* Background Gradasi Tipis di belakang teks cerita */
+.album-story-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    opacity: 0.2;
+}
+.bg-senja    { background: linear-gradient(135deg, #4a1525, #c0607a, #d4a843); }
+.bg-midnight { background: linear-gradient(135deg, #0f0c1b, #2d1b4e, #140727); }
+.bg-rose     { background: linear-gradient(135deg, #3a1c28, #742943, #e8a0b4); }
+.bg-forest   { background: linear-gradient(135deg, #122620, #224d40, #d4a843); }
+
+/* Kelopak Bunga Sakura Berguguran */
+@keyframes petalFall {
+  0% { transform: translateY(0) rotate(0deg); opacity: 0; }
+  10% { opacity: 1; }
+  100% { transform: translateY(105vh) rotate(720deg); opacity: 0; }
+}
+
+/* 4. Responsive Screen (Ukuran Layar HP) */
+@media (max-width: 768px) {
+    .album-container { grid-template-columns: 1fr; gap: 30px; }
+    .album-item.is-active { grid-column: auto; }
+    .album-item { 
+        width: 100%; 
+        max-width: 300px; 
+        height: auto; 
+        margin: 0 auto; 
+        flex-direction: column; /* Di HP, tulisan otomatis pindah ke bawah foto */
+    }
+    .album-frame { width: 100%; }
+    .album-story-card { border-radius: 0 0 15px 15px; padding: 20px; }
+}

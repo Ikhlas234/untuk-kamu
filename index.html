@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Untuk Kamu 💌</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💌</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Dancing+Script:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/album.css">
+</head>
+<body>
+
+  <div id="cursor-glow"></div>
+
+  <canvas id="star-canvas"></canvas>
+
+  <div id="aurora"></div>
+
+  <section id="hero">
+    <div class="hero-content">
+      <div class="hero-badge reveal-fade">✦ spesial banget ✦</div>
+      <h1 class="hero-title">
+        <span class="title-line">Untuk</span>
+        <span class="title-line highlight">Kamu</span>
+        <span class="title-emoji">💌</span>
+      </h1>
+      <p class="hero-subtitle reveal-fade">
+        Karena ada orang-orang yang kehadirannya bikin dunia jadi jauh lebih indah...
+      </p>
+      <div class="scroll-hint">
+        <span>scroll ke bawah</span>
+        <div class="scroll-arrow">↓</div>
+      </div>
+    </div>
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+  </section>
+
+  <section id="love-letter">
+    <div class="letter-wrapper reveal-up">
+      <div class="letter-card">
+        <div class="letter-stamp">💌</div>
+        <div class="letter-lines">
+          <div class="letter-line"></div>
+          <div class="letter-line"></div>
+          <div class="letter-line"></div>
+        </div>
+        <p class="letter-text">
+          Ada momen ketika kamu lihat seseorang dan tiba-tiba
+          <em class="highlight-text">waktu seolah melambat.</em><br><br>
+          Bukan karena sesuatu yang dramatis — tapi karena ada sesuatu
+          dalam dirinya yang bikin kamu diem sebentar dan berpikir,
+          <em class="highlight-text">"ada yang spesial dari orang ini."</em><br><br>
+          Dan itulah yang aku rasain setiap kali liat kamu. 🌙
+        </p>
+        <div class="letter-footer">
+          <div class="wax-seal">🌸</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="cinematic-moments">
+    <div class="scrolling-stage scroll-reveal">
+        
+        <div class="moment-box p-kiri-atas">
+            <div class="polaroid-frame p-rot-left">
+                <video src="assets/photos/vidio-kiri-1.mp4" autoplay loop muted playsinline></video>
+                <div class="polaroid-caption">Best moments ✨</div>
+            </div>
+        </div>
+
+        <div class="moment-box p-kanan-atas">
+            <div class="polaroid-frame p-rot-right">
+                <video src="assets/photos/vidio-kanan-1.mp4" autoplay loop muted playsinline></video>
+                <div class="polaroid-caption">Your smile 🤍</div>
+            </div>
+        </div>
+
+       <div class="moment-box p-kanan-bawah">
+    <div class="polaroid-frame">
+        <video src="assets/photos/vidio-kanan-2.mp4" autoplay loop muted playsinline></video>
+    </div>
+    <div class="polaroid-caption">Us against world</div>
+</div>
+
+        <div class="moment-box p-kiri-bawah">
+            <div class="polaroid-frame p-rot-left">
+                <video src="assets/photos/vidio-kiri-2.mp4" autoplay loop muted playsinline></video>
+                <div class="polaroid-caption">You are special</div>
+            </div>
+        </div>
+
+    </div>
+  </section>
+
+  <section id="reasons">
+    <div class="section-header reveal-fade">
+      <p class="section-label">✦ kenapa kamu spesial ✦</p>
+      <h2 class="section-title">Hal-Hal Tentang Kamu</h2>
+    </div>
+    <div class="reasons-grid" id="reasons-grid"></div>
+  </section>
+
+  <div class="album-btn-wrapper reveal-fade">
+    <p class="album-intro">Kamu terlalu indah untuk tidak diabadikan</p>
+    <button class="album-btn" id="open-album-btn" onclick="openAlbum()">
+      <span class="btn-icon">📷</span>
+      <span class="btn-text">Lihat Album Foto</span>
+      <span class="btn-shimmer"></span>
+    </button>
+    <p class="album-hint">Mencari kenangan...</p>
+  </div>
+
+  <section id="timeline">
+    <div class="section-header reveal-fade">
+      <p class="section-label">✦ momen kita ✦</p>
+      <h2 class="section-title">Cerita yang Tersimpan</h2>
+    </div>
+    <div class="timeline-track" id="timeline-track"></div>
+  </section>
+
+  <section id="bottom-msg">
+    <div class="quote-container reveal-up">
+      <div class="quote-mark">"</div>
+      <p class="bottom-quote">
+        Kamu nggak perlu tau seberapa sering aku senyum sendiri gara-gara kamu...
+        tapi semoga kamu tau seberapa berharganya kamu.
+      </p>
+      <div class="quote-mark close">"</div>
+      <div class="bottom-sign">— dari seseorang yang peduli 💌</div>
+    </div>
+    <button class="confetti-btn" onclick="triggerConfetti()">
+      <span>✨</span> Klik kalau lagi senyum <span>✨</span>
+    </button>
+  </section>
+
+  <div id="album-overlay">
+    <button class="close-album" onclick="closeAlbum()" aria-label="Tutup album">✕</button>
+    <div class="album-header">
+      <h2 class="album-title">Album Terindah 💖</h2>
+      <p class="album-subtitle">setiap foto adalah kenangan indah bersamamu</p>
+    </div>
+    
+    <div class="album-container" id="photo-grid">
+
+        <div class="album-item" onclick="activeAlbumCard(this)">
+            <div class="album-frame frame-vintage">
+                <img src="assets/photos/foto1.jpeg" alt="Kenangan 1">
+                <div class="sticker">❤️</div>
+            </div>
+            <div class="album-story-card">
+                <div class="album-story-bg bg-senja"></div>
+                <div class="album-story-content">
+                    <p class="album-typing" data-text="Melihat foto ini selalu membawa aku kembali ke momen manis itu. Senyum kamu di sini benar-benar candu yang selalu berhasil mencuri seluruh perhatianku... ✨"></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="album-item" onclick="activeAlbumCard(this)">
+            <div class="album-frame frame-elegant">
+                <img src="assets/photos/foto2.jpeg" alt="Kenangan 2">
+                <div class="sticker">🌟</div>
+            </div>
+            <div class="album-story-card">
+                <div class="album-story-bg bg-midnight"></div>
+                <div class="album-story-content">
+                    <p class="album-typing" data-text="Cahayanya bikin buta, tapi beneran deh, binar mata kamu di foto ini jauh lebih terang dan indah dari semua bintang yang ada di langit malam. 🤍"></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="album-item" onclick="activeAlbumCard(this)">
+            <div class="album-frame frame-classic">
+                <img src="assets/photos/foto3.jpeg" alt="Kenangan 3">
+                <div class="sticker">🌸</div>
+            </div>
+            <div class="album-story-card">
+                <div class="album-story-bg bg-rose"></div>
+                <div class="album-story-content">
+                    <p class="album-typing" data-text="Aesthetic banget kan? Tapi bagi aku, bukan cuma estetik fotonya, tapi cara kamu melihat dunia dan cara kamu memperlakukan aku yang bikin momen ini berharga. 🧸"></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="album-item" onclick="activeAlbumCard(this)">
+            <div class="album-frame frame-vintage">
+                <img src="assets/photos/foto4.jpeg" alt="Kenangan 4">
+                <div class="sticker">😌</div>
+            </div>
+            <div class="album-story-card">
+                <div class="album-story-bg bg-forest"></div>
+                <div class="album-story-content">
+                    <p class="album-typing" data-text="Selalu bikin kangen setiap kali aku melihatnya. Rasanya ingin cepat-cepat putar waktu biar bisa mengulang hari bahagia ini lagi sama kamu. 🍀"></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="album-item" onclick="activeAlbumCard(this)">
+            <div class="album-frame frame-elegant">
+                <img src="assets/photos/foto5.jpeg" alt="Kenangan 5">
+                <div class="sticker">💭</div>
+            </div>
+            <div class="album-story-card">
+                <div class="album-story-bg bg-senja"></div>
+                <div class="album-story-content">
+                    <p class="album-typing" data-text="Soft & gentle, sama persis seperti bagaimana kamu selalu sabar menghadapi aku. Makasih ya sudah menjadi bagian paling menenangkan di hidupku. 💕"></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="album-item" onclick="activeAlbumCard(this)">
+            <div class="album-frame frame-classic">
+                <img src="assets/photos/foto6.jpeg" alt="Kenangan 6">
+                <div class="sticker">🧊</div>
+            </div>
+            <div class="album-story-card">
+                <div class="album-story-bg bg-midnight"></div>
+                <div class="album-story-content">
+                    <p class="album-typing" data-text="Bikin hati adem banget setiap kali duniaku lagi berisik. Cukup lihat muka kamu di foto ini, semua lelahku langsung hilang entah ke mana. 🌙"></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="album-item" onclick="activeAlbumCard(this)">
+            <div class="album-frame frame-vintage">
+                <img src="assets/photos/foto7.jpeg" alt="Kenangan 7">
+                <div class="sticker">😊</div>
+            </div>
+            <div class="album-story-card">
+                <div class="album-story-bg bg-rose"></div>
+                <div class="album-story-content">
+                    <p class="album-typing" data-text="Senyum yang selalu dirindukan, kapan pun dan di mana pun. Janji ya untuk selalu tersenyum lepas seperti ini, karena bahagia kamu itu bahagianya aku juga. 🌹"></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="album-item" onclick="activeAlbumCard(this)">
+            <div class="album-frame frame-elegant">
+                <img src="assets/photos/foto8.jpeg" alt="Kenangan 8">
+                <div class="sticker">💖</div>
+            </div>
+            <div class="album-story-card">
+                <div class="album-story-bg bg-forest"></div>
+                <div class="album-story-content">
+                    <p class="album-typing" data-text="Momen yang selalu diingat dan gak akan pernah pudar dimakan waktu. Ini bukan akhir cerita kita, tapi justru awal dari banyak hari indah ke depan. I love you! 🦖"></p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+  </div>
+
+  <div id="lightbox" role="dialog" aria-modal="true" style="display:none;">
+    <div class="lb-inner">
+      <button class="lb-close" onclick="closeLightbox()" aria-label="Tutup">✕</button>
+      <button class="lb-nav" id="lb-prev" onclick="lbNav(-1)" aria-label="Sebelumnya">❮</button>
+      <div class="lb-img-wrap"><img id="lb-img" src="" alt="Foto"></div>
+      <button class="lb-nav" id="lb-next" onclick="lbNav(1)" aria-label="Selanjutnya">❯</button>
+      <div id="lb-caption"></div>
+      <div class="lb-counter" id="lb-counter"></div>
+    </div>
+  </div>
+
+  <div style="position: fixed; top: -9999px; left: -9999px; visibility: hidden; opacity: 0;">
+    <div id="youtube-audio-player"></div>
+  </div>
+
+  <script src="js/photos.js"></script>
+  <script src="js/reasons.js"></script>
+  <script src="js/timeline.js"></script>
+  <script src="js/stars.js"></script>
+  <script src="js/particles.js"></script>
+  <script src="js/album.js"></script>
+  <script src="js/effects.js"></script>
+  <script src="https://www.youtube.com/iframe_api"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
