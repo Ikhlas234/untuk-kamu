@@ -138,68 +138,72 @@ body {
 }
 
 /* ============================================================
-   PERBAIKAN ALBUM HP — TETAP MENYAMPING KE SAMPING (FIXED TOTAL) 📱
+   FIX TOTAL: MEMAKSA ALBUM HALAMAN UTAMA MENYAMPING DI HP 📱
    ============================================================ */
 
 @media (max-width: 768px) {
-  /* 1. Paksa Container Utama di dalam Pop-up Album untuk berjejer ke samping */
-  #album-overlay > div,
-  #album-overlay div[style*="display"],
-  #album-overlay .container {
+  /* 1. Paksa pembungkus utama album lu biar berjejer ke samping (kiri foto, kanan teks) */
+  .album-container,
+  .album-grid,
+  .album-wrapper,
+  main div[style*="grid"],
+  div[style*="display: flex"] {
     display: flex !important;
     flex-direction: row !important; /* WAJIB KE SAMPING */
-    flex-wrap: nowrap !important;   /* ANTI TURUN KE BAWAH */
+    flex-wrap: nowrap !important;   /* ANTI KEBANTING KE BAWAH */
     align-items: center !important;
     justify-content: center !important;
-    gap: 12px !important;           /* Jarak tipis foto dan teks */
+    gap: 8px !important;            /* Jarak tipis antar foto & teks */
     width: 100% !important;
-    max-width: 100% !important;
-    padding: 10px !important;
+    padding: 5px !important;
   }
 
-  /* 2. Paksa ukuran bingkai Polaroid mengecil biar muat digandeng */
-  #album-overlay .polaroid,
-  #album-overlay div[style*="background-color: white"],
-  #album-overlay div[style*="background: white"] {
-    width: 46% !important;          /* Makan hampir setengah lebar layar */
+  /* 2. Paksa ukuran polaroid mengecil setengah layar biar muat digandeng */
+  .polaroid, 
+  .polaroid-card,
+  div[style*="background-color: white"],
+  div[style*="background: white"] {
+    width: 45% !important;          /* Makan setengah lebar HP */
     min-width: 130px !important;
     max-width: 160px !important;
     margin: 0 !important;
-    padding: 8px 8px 16px 8px !important; /* Jaga bentuk polaroid */
+    padding: 6px 6px 12px 6px !important;
     display: inline-block !important;
     box-sizing: border-box !important;
   }
 
-  /* 3. Paksa Gambar di dalam polaroid ikut mengecil secara proporsional */
-  #album-overlay img {
+  /* 3. Paksa gambar di dalam polaroid mengecil proporsional */
+  .polaroid img,
+  div[style*="white"] img {
     width: 100% !important;
     height: auto !important;
     display: block !important;
-    margin: 0 !important;
   }
 
-  /* 4. Paksa Kotak Teks Romantis berdiri tepat di sebelah kanan foto */
-  #album-overlay div[style*="background"]:not([style*="white"]),
-  #album-overlay .polaroid + div,
-  #album-overlay div:nth-child(2) {
+  /* 4. Paksa kotak teks romantis naik dan nempel di sebelah kanan polaroidnya */
+  .album-text,
+  .text-box,
+  .polaroid + div,
+  div[style*="background"]:not([style*="white"]) {
     display: block !important;
     visibility: visible !important;
     opacity: 1 !important;
-    width: 48% !important;          /* Sisa setengah lebar layar untuk teks */
+    width: 50% !important;          /* Sisa space buat teks */
     min-width: 130px !important;
     max-width: 180px !important;
     margin: 0 !important;
-    padding: 12px !important;
+    padding: 8px !important;
     box-sizing: border-box !important;
     border-radius: 8px !important;
   }
 
-  /* 5. Kecilkan ukuran teksnya agar pas dan ga tumpah di HP */
-  #album-overlay p,
-  #album-overlay span,
-  #album-overlay div:not([style*="white"]) {
-    font-size: 8.5pt !important;    /* Ukuran pas dibaca di layar HP */
-    line-height: 1.4 !important;
+  /* 5. Perkecil ukuran hurufnya biar muat di space sempit HP */
+  .album-text p,
+  .polaroid + div p,
+  div[style*="background"]:not([style*="white"]) p,
+  div[style*="background"]:not([style*="white"]) span {
+    font-size: 8pt !important;     /* Ukuran font kecil biar ga tumpah */
+    line-height: 1.3 !important;
     white-space: normal !important;
     text-align: left !important;
   }
