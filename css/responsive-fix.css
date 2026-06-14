@@ -1,0 +1,161 @@
+/* ========================================================
+   RESPONSIVE MOBILE FIX — Hanya ukuran, tidak ada yang diubah
+   Tambahkan di paling bawah style.css (setelah semua kode yang ada)
+   ======================================================== */
+
+/* ── GLOBAL SAFE BASE ── */
+html, body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+img, video {
+  max-width: 100%;
+  height: auto;
+}
+
+/* ══════════════════════════════════════════════════
+   TABLET (max 1024px)
+══════════════════════════════════════════════════ */
+@media (max-width: 1024px) {
+  .hero-title { font-size: 4rem; }
+  .letter-card { padding: 60px 40px; }
+  .album-container { grid-template-columns: repeat(2, 1fr); gap: 24px; }
+  .album-item { height: 380px; }
+  .album-frame { width: 260px; }
+
+  /* Polaroid cinematic - tablet */
+  .moment-box { width: 260px; }
+  .p-kiri-atas  { top: 40px;  left: 4%; }
+  .p-kanan-atas { top: 200px; right: 4%; }
+  .p-kiri-bawah { top: 520px; left: 6%; }
+  .p-kanan-bawah{ top: 700px; right: 6%; }
+}
+
+/* ══════════════════════════════════════════════════
+   MOBILE LARGE (max 768px)
+══════════════════════════════════════════════════ */
+@media (max-width: 768px) {
+
+  /* Hero */
+  .hero-title    { font-size: 3rem; }
+  .title-emoji   { font-size: 2.2rem; }
+  .hero-subtitle { font-size: 1.1rem; margin-bottom: 30px; }
+  .hero-badge    { font-size: 0.75rem; padding: 6px 16px; }
+
+  /* Love Letter */
+  .letter-card   { padding: 50px 22px 40px; }
+  .letter-text   { font-size: 1.05rem; line-height: 2; }
+  .letter-stamp  { font-size: 2.8rem; top: -22px; }
+
+  /* Section labels */
+  .section-title { font-size: 2rem; }
+  .section-label { font-size: 0.72rem; letter-spacing: 3px; }
+
+  /* Reasons grid — 1 kolom di HP */
+  .reasons-grid  { grid-template-columns: 1fr; gap: 14px; }
+  .reason-card   { padding: 22px 18px; }
+  .reason-emoji  { font-size: 2rem; }
+  .reason-title  { font-size: 1.2rem; }
+  .reason-desc   { font-size: 0.95rem; }
+
+  /* Album button */
+  .album-btn       { padding: 15px 30px; font-size: 1rem; }
+  .album-btn-wrapper { padding: 40px 16px 60px; }
+
+  /* Timeline */
+  #timeline        { padding: 60px 16px; }
+  .timeline-track  { padding-left: 28px; }
+  .timeline-dot    { left: -35px; width: 12px; height: 12px; }
+  .timeline-title  { font-size: 1.3rem; }
+  .timeline-desc   { font-size: 0.95rem; }
+
+  /* Bottom quote */
+  #bottom-msg      { padding: 60px 20px 80px; }
+  .bottom-quote    { font-size: 1rem; line-height: 1.9; }
+  .bottom-sign     { font-size: 1.5rem; }
+  .quote-mark      { font-size: 3.5rem; }
+
+  /* Confetti btn */
+  .confetti-btn    { font-size: 0.85rem; padding: 10px 20px; }
+
+  /* Album overlay */
+  #album-overlay   { padding: 80px 12px 60px; }
+  .album-title     { font-size: 2rem; }
+  .album-subtitle  { font-size: 0.9rem; }
+  .close-album     { width: 44px; height: 44px; font-size: 1.2rem; top: 14px; right: 14px; }
+
+  /* Album grid — 1 kolom di HP */
+  .album-container {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    max-width: 340px;
+  }
+
+  /* Album item — foto dan cerita tumpuk vertikal */
+  .album-item {
+    flex-direction: column;
+    height: auto;
+    max-width: 100%;
+  }
+  .album-item.is-active { grid-column: auto; }
+
+  /* Frame foto normal di HP */
+  .album-frame {
+    width: 100%;
+    padding: 10px 10px 44px;
+  }
+  .album-frame img { height: 260px; object-fit: cover; }
+
+  /* Cerita muncul di bawah foto */
+  .album-item.is-active .album-story-card {
+    border-radius: 0 0 14px 14px;
+    padding: 16px;
+    min-height: 120px;
+  }
+  .album-typing { font-size: 1.05rem; line-height: 1.7; }
+
+  /* Polaroid cinematic — stack vertikal di HP (sudah ada, diperkuat) */
+  #cinematic-moments { min-height: auto; padding: 30px 16px; }
+  .scrolling-stage {
+    position: relative !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 28px !important;
+  }
+  .moment-box {
+    position: relative !important;
+    top: auto !important; left: auto !important;
+    right: auto !important; bottom: auto !important;
+    width: 100% !important;
+    max-width: 300px !important;
+  }
+  .p-rot-left, .p-rot-right { transform: rotate(0deg) !important; }
+
+  /* Video polaroid — proporsional */
+  .polaroid-frame video { height: 200px; object-fit: cover; width: 100%; }
+  .polaroid-caption { font-size: 1.1rem; }
+
+  /* Cursor off di HP */
+  body   { cursor: auto; }
+  #cursor-glow { display: none !important; }
+}
+
+/* ══════════════════════════════════════════════════
+   MOBILE SMALL (max 480px)
+══════════════════════════════════════════════════ */
+@media (max-width: 480px) {
+  .hero-title    { font-size: 2.5rem; }
+  .hero-subtitle { font-size: 1rem; }
+  .letter-card   { padding: 44px 16px 32px; border-radius: 16px; }
+  .letter-text   { font-size: 1rem; }
+
+  .album-container { max-width: 100%; }
+  .album-frame img { height: 220px; }
+
+  .section-title   { font-size: 1.7rem; }
+  .bottom-quote    { font-size: 0.95rem; }
+  .album-btn       { font-size: 0.95rem; padding: 14px 26px; }
+  .polaroid-frame video { height: 170px; }
+}

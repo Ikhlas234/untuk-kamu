@@ -1,0 +1,138 @@
+/* ============================================================
+   css/cinematic-upgrade.css — Upgrade Sinematik Korea ✨
+   VERSI REVISI TOTAL — AMAN DARI BLOCKED LAYER & BLANK ICON
+   ============================================================ */
+
+/* ── 1. Vignette Sinematik (Digeser ke background agar TIDAK menutupi foto) ── */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2; /* Diturunkan drastis agar foto/video berada di atasnya */
+  background:
+    radial-gradient(
+      ellipse 85% 85% at 50% 50%,
+      transparent 60%,
+      rgba(5, 2, 12, 0.55) 100%
+    );
+}
+
+/* ── 2. Film Grain Texture (Digeser ke background belakang foto) ── */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1; /* Diturunkan agar tidak menimpa elemen gambar aktif */
+  opacity: 0.025;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 200px 200px;
+  background-repeat: repeat;
+  animation: grainShift 0.12s steps(1) infinite;
+}
+
+@keyframes grainShift {
+  0%   { background-position: 0 0; }
+  10% { background-position: -20px 15px; }
+  20% { background-position: 15px -10px; }
+  30% { background-position: -10px 20px; }
+  40% { background-position: 20px 5px; }
+  50% { background-position: -5px -20px; }
+  60% { background-position: 10px 10px; }
+  70% { background-position: -15px 5px; }
+  80% { background-position: 5px -15px; }
+  90% { background-position: -20px 20px; }
+  100%{ background-position: 0 0; }
+}
+
+/* ── 3. Color Grading ── */
+html {
+  filter: saturate(1.05) contrast(1.02);
+}
+
+/* ── 4. Letterbox Bars (Sinematik) ── */
+.cinematic-bars-top,
+.cinematic-bars-bottom {
+  position: fixed;
+  left: 0; right: 0;
+  height: 0;
+  background: #030108;
+  z-index: 9988;
+  pointer-events: none;
+  transition: height 0.8s cubic-bezier(0.16,1,0.3,1);
+}
+.cinematic-bars-top    { top: 0; }
+.cinematic-bars-bottom { bottom: 0; }
+
+body.cinematic-mode .cinematic-bars-top,
+body.cinematic-mode .cinematic-bars-bottom {
+  height: 48px;
+}
+
+/* ── 5. Font Rendering ── */
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* ── 6. Glow Judul Utama ── */
+.hero-title, .hero h1, h1 {
+  text-shadow:
+    0 0 30px rgba(232,160,180,0.45),
+    0 0 60px rgba(192,96,122,0.25);
+}
+
+/* ── 7. Card Glass Effect ── */
+.love-letter-card, .letter-card, .glass-card {
+  backdrop-filter: blur(24px) saturate(1.4) !important;
+  -webkit-backdrop-filter: blur(24px) saturate(1.4) !important;
+  border: 1px solid rgba(232,160,180,0.18) !important;
+  box-shadow: 0 8px 40px rgba(10,5,18,0.6) !important;
+}
+
+/* ── 8. Tombol Album ── */
+.album-btn, .open-album-btn, button[onclick*="openAlbum"] {
+  position: relative;
+  overflow: hidden;
+}
+.album-btn::before, .open-album-btn::before, button[onclick*="openAlbum"]::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(105deg, transparent 30%, rgba(255,255,255,0.18) 50%, transparent 70%);
+  transform: translateX(-100%);
+}
+.album-btn:hover::before, .open-album-btn:hover::before, button[onclick*="openAlbum"]:hover::before {
+  transform: translateX(100%);
+  transition: transform 0.55s ease;
+}
+
+/* ── 9. Polaroid Shadow (Gunakan box-shadow standar web aman) ── */
+.polaroid, .polaroid-card, .polaroid-wrapper, .moment-box {
+  box-shadow: 0 15px 45px rgba(0, 0, 0, 0.65) !important;
+  transition: box-shadow 0.4s ease, transform 0.4s cubic-bezier(0.16,1,0.3,1) !important;
+}
+.polaroid:hover, .polaroid-card:hover, .polaroid-wrapper:hover, .moment-box:hover {
+  box-shadow: 0 25px 55px rgba(232, 160, 180, 0.25) !important;
+}
+
+/* ── 10. Scroll Bar ── */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: #0a0512; }
+::-webkit-scrollbar-thumb { background: linear-gradient(to bottom, #c0607a, #d4a843); border-radius: 2px; }
+
+/* ── 11. Selection Color ── */
+::selection { background: rgba(232,160,180,0.35); color: #fce4ec; }
+
+/* ── 12. Album Overlay ── */
+#album-overlay {
+  backdrop-filter: blur(8px) !important;
+  -webkit-backdrop-filter: blur(8px) !important;
+}
+
+/* ── 13. Video Overlay ── */
+.video-overlay, .hero-overlay {
+  background: linear-gradient(to bottom, rgba(10,5,18,0.35) 0%, rgba(10,5,18,0.55) 100%) !important;
+}

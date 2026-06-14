@@ -1,6 +1,6 @@
-/* =============================================
-   style.css — Premium Masterclass Edition
-   ============================================= */
+/* ========================================================
+   style.css — Premium Masterclass Edition (PERFECT BALANCE)
+   ======================================================== */
 
 :root {
   --rose:        #e8a0b4;
@@ -103,7 +103,6 @@ body {
   margin-bottom: 30px;
 }
 
-/* FIX UTAMA: Judul tidak hilang */
 .hero-title {
     font-family: 'Playfair Display', serif;
     font-size: 5rem;
@@ -140,8 +139,8 @@ body {
 }
 
 @keyframes floatBounce {
-  0%, 100% { transform: translateY(0) rotate(-5deg); }
-  50%       { transform: translateY(-20px) rotate(5deg); }
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-10px); }
 }
 
 .hero-subtitle {
@@ -153,7 +152,6 @@ body {
   line-height: 1.8;
 }
 
-/* Scroll hint */
 .scroll-hint {
   display: flex;
   flex-direction: column;
@@ -176,7 +174,6 @@ body {
   50%       { transform: translateY(10px); opacity: 1; }
 }
 
-/* Orbs */
 .orb {
   position: absolute;
   border-radius: 50%;
@@ -421,8 +418,6 @@ body {
     justify-content: center;
     align-items: center;
     transition: opacity 1.5s cubic-bezier(0.16, 1, 0.3, 1);
-    
-    /* TAMBAHKAN BARIS INI: */
     pointer-events: none; 
 }
 .intro-content {
@@ -465,56 +460,55 @@ body {
 }
 
 /* ========================================================
-   STYLING ACAK VIDEO POLAROID (BARU GABUNGAN)
+   STYLING ACAK VIDEO POLAROID (THE PERFECT BALANCE GRID)
    ======================================================== */
 #cinematic-moments {
     position: relative;
     z-index: 10;
-    min-height: 150vh; /* Tinggi pas agar sensasi scroll sinematik terasa */
+    min-height: 125vh; /* Ruang scroll seimbang, ga kepanjangan dan ga kependekan */
     width: 100%;
-    padding: 100px 0;
+    padding: 60px 0;
     display: flex;
     justify-content: center;
-    overflow: hidden; /* Mengunci agar tumpukan acak tidak merusak batas lebar layar */
+    overflow: hidden; 
 }
 
-/* FIX: Memastikan video terlihat meskipun JS gagal memicu class 'active' */
-/* FORCE VISIBILITY: Memastikan video selalu muncul tanpa bergantung pada JS */
 .scrolling-stage {
     opacity: 1 !important;
     filter: blur(0px) !important;
     transition: all 1.2s cubic-bezier(0.215, 1, 0.5, 1);
     visibility: visible !important;
+    width: 100%;
 }
 
-/* Menghapus status transparan dari class scroll-reveal */
-.scrolling-stage.scroll-reveal {
-    opacity: 1 !important;
-    filter: blur(0px) !important;
-}
-
-/* Kerangka dasar kotak polaroid */
+/* UKURAN UTAMA NETRAL UNTUK LAPTOP, TABLET, DAN HP */
 .moment-box {
-    position: absolute; /* Kunci penataan acak via koordinat top/left/right */
-    transition: transform 0.4s cubic-bezier(0.170, 0.880, 0.440, 1);
-    width: 320px;
-}
-
-/* Bingkai Polaroid Estetik */
-.polaroid-frame {
+    position: absolute; 
+    width: 295px; /* Lebar manis pas di tengah-tengah */
     background: rgba(255, 255, 255, 0.05);
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
     border: 1px solid rgba(255, 255, 255, 0.1);
-    padding: 15px 15px 25px 15px;
-    border-radius: 8px;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+    padding: 13px 13px 23px 13px;
+    border-radius: 12px;
+    box-shadow: 0 25px 55px rgba(0, 0, 0, 0.75) !important; 
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.polaroid-frame {
+    background: transparent;
+    padding: 0;
+    border-radius: 6px;
+    overflow: hidden;
 }
 
 .polaroid-frame video {
     width: 100%;
-    border-radius: 4px;
+    height: auto;
+    aspect-ratio: 3/4;
     object-fit: cover;
+    display: block;
+    border-radius: 6px;
 }
 
 .polaroid-caption {
@@ -525,70 +519,84 @@ body {
     color: var(--rose);
 }
 
-/* Aturan Rotasi Masing-Masing Bingkai */
-.p-rot-left { transform: rotate(-5deg); }
-.p-rot-right { transform: rotate(5deg); }
+/* COORDINATE GRID — WAJAR & NORMAL (TIDAK RAPET & TIDAK LONGGAR) 
+   Kemiringan rotasi dibuat tipis berkisar 3 derajat biar estetik berkelas.
+*/
 
-/* Aturan Koordinat Acak (Symmetrical Scattered Grid) */
+/* ── Polaroid 1: Best Moments ── */
 .p-kiri-atas {
-    top: 55px;
-    left: 7%;
+    top: 20px;
+    left: 10%;
+    transform: rotate(-3.5deg);
 }
 
+/* ── Polaroid 2: Your Smile ── */
 .p-kanan-atas {
-    top: 225px;
-    right: 7%;
+    top: 250px; /* Selisih jarak vertikal wajar dan seimbang */
+    right: 10%;
+    transform: rotate(2.5deg);
 }
 
+/* ── Polaroid 3: You Are Special ── */
 .p-kiri-bawah {
-    top: 580px;
-    left: 12%;
+    top: 480px; /* Selisih jarak vertikal wajar dan seimbang */
+    left: 11%;
+    transform: rotate(-2.5deg);
 }
 
+/* ── Polaroid 4: Us Against World ── */
 .p-kanan-bawah {
-    top: 780px;
-    right: 12%;
+    top: 710px; /* Titik penutup yang pas tanpa tumpang tindih */
+    right: 11%;
+    transform: rotate(3.5deg);
 }
 
-/* Efek Anggun Saat Hover */
+/* Hover Efek PC/Laptop */
 .moment-box:hover {
     z-index: 100;
-    transform: scale(1.05) rotate(0deg);
+    transform: scale(1.06) rotate(0deg) translateY(-5px) !important;
+    box-shadow: 0 35px 70px rgba(232, 160, 180, 0.25) !important;
 }
 
-/* Engine Animasi Fade In/Out Mengikuti Scroll */
-.scrolling-stage.scroll-reveal {
-    opacity: 0;
-    filter: blur(10px);
-    transition: all 1.2s cubic-bezier(0.25, 1, 0.5, 1);
-}
-
-.scrolling-stage.scroll-reveal.active {
-    opacity: 1;
-    filter: blur(0px);
-}
 
 /* ═══════════════════════════════════════
-   RESPONSIVE OVERRIDES
-═══════════════════════════════════════ */
-@media (max-width: 768px) {
+   MEDIA QUERIES (OTOMATIS DI HP & TABLET)
+   ======================================= */
+@media (max-width: 1024px) { /* Layar Tablet dan HP */
+  #cinematic-moments { 
+      min-height: auto; 
+      padding: 50px 20px; 
+  }
+  
+  /* Otomatis bertukar jadi tatanan kolom vertikal lurus yang rapi */
+  .scrolling-stage { 
+      display: flex; 
+      flex-direction: column; 
+      gap: 50px; /* Jarak vertikal paling wajar dan ideal untuk scroll layar HP */
+      align-items: center; 
+  }
+  
+  /* Melepas fungsi koordinat laptop agar responsif mengikuti ukuran HP */
+  .moment-box {
+      position: relative; 
+      top: auto !important;
+      left: auto !important;
+      right: auto !important;
+      width: 100%;
+      max-width: 295px;
+      transform: rotate(0deg) !important; /* Dinormalkan di HP agar frame video presisi penuh */
+  }
+  
+  .moment-box:hover { 
+      transform: scale(1.04) translateY(-4px) !important; 
+  }
+}
+
+@media (max-width: 768px) { /* Layar HP Kecil */
   .hero-title { font-size: 3.5rem; }
   .letter-card { padding: 50px 30px; }
   .album-btn { padding: 18px 44px; font-size: 1.5rem; }
   .reasons-grid { grid-template-columns: 1fr; }
   body { cursor: auto; }
   #cursor-glow { display: none; }
-  
-  /* Penyesuaian Grid Polaroid Acak khusus Layar HP */
-  #cinematic-moments { min-height: auto; padding: 40px 20px; }
-  .scrolling-stage { display: flex; flex-direction: column; gap: 40px; align-items: center; }
-  .moment-box {
-      position: relative; /* Menghapus sistem absolute agar layout tidak bertumpuk berantakan di HP */
-      top: auto !important;
-      left: auto !important;
-      right: auto !important;
-      width: 100%;
-      max-width: 290px;
-  }
-  .p-rot-left, .p-rot-right { transform: rotate(0deg); }
 };
