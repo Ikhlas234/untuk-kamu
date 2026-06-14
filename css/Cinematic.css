@@ -136,3 +136,59 @@ body {
 .video-overlay, .hero-overlay {
   background: linear-gradient(to bottom, rgba(10,5,18,0.35) 0%, rgba(10,5,18,0.55) 100%) !important;
 }
+
+/* ============================================================
+   PERBAIKAN ALBUM HP — TETAP MENYAMPING KE SAMPING ✨
+   ============================================================ */
+
+@media (max-width: 768px) {
+  /* 1. Memaksa isi pop-up album tetap sejajar ke samping (Kiri Foto, Kanan Teks) */
+  #album-overlay div[style*="display: flex"],
+  .album-popup-content,
+  .album-row {
+    display: flex !important;
+    flex-direction: row !important; /* Tetap ke samping kayak di laptop */
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 10px !important; /* Jarak tipis antar foto dan teks biar muat */
+    width: 100% !important;
+    padding: 5px !important;
+  }
+
+  /* 2. Mengecilkan ukuran foto Polaroid di HP agar muat berdampingan */
+  #album-overlay .polaroid,
+  #album-overlay .polaroid-card,
+  #album-overlay img {
+    width: 45% !important; /* Mengambil hampir setengah lebar layar HP */
+    max-width: 160px !important;
+    margin: 0 !important;
+    display: block !important;
+  }
+
+  /* 3. Mengatur Kotak Teks Romantis agar Berdampingan di Sebelah Kanan Foto */
+  #album-overlay div[style*="background"],
+  #album-overlay .text-box,
+  .polaroid + div {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    width: 50% !important; /* Mengambil setengah sisa lebar layar HP */
+    max-width: 180px !important;
+    margin: 0 !important;
+    padding: 10px !important;
+    box-sizing: border-box !important;
+    border-radius: 8px !important;
+    background: rgba(45, 27, 78, 0.6) !important; /* Warna latar box teks tetap transparan estetik */
+  }
+
+  /* 4. Mengecilkan ukuran teksnya agar tidak luber keluar kotak di HP */
+  #album-overlay p,
+  #album-overlay div[style*="background"] span,
+  .polaroid + div p {
+    font-size: 8pt !important; /* Ukuran font disesuaikan biar pas di HP */
+    line-height: 1.4 !important;
+    white-space: normal !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+}
