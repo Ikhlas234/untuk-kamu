@@ -1,30 +1,25 @@
 /* ============================================================
    css/cinematic-upgrade.css — Upgrade Sinematik Korea ✨
-   VERSI REVISI TOTAL — AMAN DARI BLOCKED LAYER & BLANK ICON
+   VERSI REVISI MUTLAK — AMAN DARI BLOCKED LAYER & JALUR SINKRON
    ============================================================ */
 
-/* ── 1. Vignette Sinematik (Digeser ke background agar TIDAK menutupi foto) ── */
+/* ── 1. Vignette Sinematik ── */
 body::after {
   content: '';
   position: fixed;
   inset: 0;
   pointer-events: none;
-  z-index: 2; /* Diturunkan drastis agar foto/video berada di atasnya */
-  background:
-    radial-gradient(
-      ellipse 85% 85% at 50% 50%,
-      transparent 60%,
-      rgba(5, 2, 12, 0.55) 100%
-    );
+  z-index: 2;
+  background: radial-gradient(ellipse 85% 85% at 50% 50%, transparent 60%, rgba(5, 2, 12, 0.55) 100%);
 }
 
-/* ── 2. Film Grain Texture (Digeser ke background belakang foto) ── */
+/* ── 2. Film Grain Texture ── */
 body::before {
   content: '';
   position: fixed;
   inset: 0;
   pointer-events: none;
-  z-index: 1; /* Diturunkan agar tidak menimpa elemen gambar aktif */
+  z-index: 1;
   opacity: 0.025;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   background-size: 200px 200px;
@@ -51,7 +46,7 @@ html {
   filter: saturate(1.05) contrast(1.02);
 }
 
-/* ── 4. Letterbox Bars (Sinematik) ── */
+/* ── 4. Letterbox Bars ── */
 .cinematic-bars-top,
 .cinematic-bars-bottom {
   position: fixed;
@@ -79,9 +74,7 @@ body {
 
 /* ── 6. Glow Judul Utama ── */
 .hero-title, .hero h1, h1 {
-  text-shadow:
-    0 0 30px rgba(232,160,180,0.45),
-    0 0 60px rgba(192,96,122,0.25);
+  text-shadow: 0 0 30px rgba(232,160,180,0.45), 0 0 60px rgba(192,96,122,0.25);
 }
 
 /* ── 7. Card Glass Effect ── */
@@ -109,7 +102,7 @@ body {
   transition: transform 0.55s ease;
 }
 
-/* ── 9. Polaroid Shadow (Gunakan box-shadow standar web aman) ── */
+/* ── 9. Polaroid Shadow ── */
 .polaroid, .polaroid-card, .polaroid-wrapper, .moment-box {
   box-shadow: 0 15px 45px rgba(0, 0, 0, 0.65) !important;
   transition: box-shadow 0.4s ease, transform 0.4s cubic-bezier(0.16,1,0.3,1) !important;
@@ -138,73 +131,64 @@ body {
 }
 
 /* ============================================================
-   FIX TOTAL: MEMAKSA ALBUM HALAMAN UTAMA MENYAMPING DI HP 📱
+   FIX TOTAL SEUMUR HIDUP: ALBUM HP MENYAMPING KIRI-KANAN 📱
    ============================================================ */
 
 @media (max-width: 768px) {
-  /* 1. Paksa pembungkus utama album lu biar berjejer ke samping (kiri foto, kanan teks) */
-  .album-container,
-  .album-grid,
-  .album-wrapper,
-  main div[style*="grid"],
-  div[style*="display: flex"] {
+  /* Memaksa item album berjejer ke samping (kiri foto, kanan teks) */
+  #album-overlay .album-item {
     display: flex !important;
-    flex-direction: row !important; /* WAJIB KE SAMPING */
-    flex-wrap: nowrap !important;   /* ANTI KEBANTING KE BAWAH */
+    flex-direction: row !important; /* Paksa baris menyamping */
+    flex-wrap: nowrap !important;   /* Blokir tumpukan kebawah */
     align-items: center !important;
-    justify-content: center !important;
-    gap: 8px !important;            /* Jarak tipis antar foto & teks */
+    justify-content: space-between !important;
     width: 100% !important;
-    padding: 5px !important;
-  }
-
-  /* 2. Paksa ukuran polaroid mengecil setengah layar biar muat digandeng */
-  .polaroid, 
-  .polaroid-card,
-  div[style*="background-color: white"],
-  div[style*="background: white"] {
-    width: 45% !important;          /* Makan setengah lebar HP */
-    min-width: 130px !important;
-    max-width: 160px !important;
-    margin: 0 !important;
-    padding: 6px 6px 12px 6px !important;
-    display: inline-block !important;
+    max-width: 100% !important;
+    gap: 12px !important;           /* Jarak aman polaroid & teks */
+    margin-bottom: 20px !important; /* Jarak antar baris album */
+    padding: 0 10px !important;
     box-sizing: border-box !important;
   }
 
-  /* 3. Paksa gambar di dalam polaroid mengecil proporsional */
-  .polaroid img,
-  div[style*="white"] img {
+  /* Mengecilkan bingkai vintage/classic polaroid di HP */
+  #album-overlay .album-frame {
+    width: 42% !important;          /* Makan 42% lebar layar */
+    min-width: 120px !important;
+    max-width: 150px !important;
+    flex-shrink: 0 !important;      /* Cegah foto gepeng */
+    margin: 0 !important;
+    box-sizing: border-box !important;
+  }
+
+  /* Gambar di dalam frame dipaksa responsif */
+  #album-overlay .album-frame img {
     width: 100% !important;
     height: auto !important;
     display: block !important;
   }
 
-  /* 4. Paksa kotak teks romantis naik dan nempel di sebelah kanan polaroidnya */
-  .album-text,
-  .text-box,
-  .polaroid + div,
-  div[style*="background"]:not([style*="white"]) {
+  /* Kotak teks cerita romantis dipaksa tegak di sebelah kanan foto */
+  #album-overlay .album-story-card {
     display: block !important;
     visibility: visible !important;
     opacity: 1 !important;
-    width: 50% !important;          /* Sisa space buat teks */
-    min-width: 130px !important;
-    max-width: 180px !important;
+    width: 55% !important;          /* Sisa space untuk kotak teks */
+    min-width: 140px !important;
     margin: 0 !important;
-    padding: 8px !important;
+    position: relative !important;
+    transform: none !important;     /* Reset animasi bawaan yang bikin mental */
     box-sizing: border-box !important;
-    border-radius: 8px !important;
+    height: auto !important;
   }
 
-  /* 5. Perkecil ukuran hurufnya biar muat di space sempit HP */
-  .album-text p,
-  .polaroid + div p,
-  div[style*="background"]:not([style*="white"]) p,
-  div[style*="background"]:not([style*="white"]) span {
-    font-size: 8pt !important;     /* Ukuran font kecil biar ga tumpah */
-    line-height: 1.3 !important;
-    white-space: normal !important;
+  /* Font pengetikan dikecilkan agar muat di grid sempit HP */
+  #album-overlay .album-story-content p.album-typing {
+    font-size: 8.5pt !important;
+    line-height: 1.4 !important;
+    white-space: normal !important; /* Paksa teks otomatis ganti baris */
+    margin: 0 !important;
+    padding: 5px !important;
+    color: #ffffff !important;
     text-align: left !important;
   }
 }
